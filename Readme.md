@@ -40,7 +40,16 @@ Examples
 Set up a new Prisma project จะได้ folder prisma และ .env file ขึ้นมา >> prisma init 
 sync database กับ ตาราง เป็น การ connect database มักผิดตรง Database_URL ใน schema.prima ตาราง User จะไปโผล่ที่ DBeaver  >> prisma db push 
 
+- ตัว client เป็นตัว generate 
+generator client {
+  provider = "prisma-client-js"
+}
 
+- กำหนด Database ที่เราจะเชื่อมต่อ 
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 
 

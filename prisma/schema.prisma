@@ -14,10 +14,26 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  password  String
-  createdAu DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  //field name     //field type       //Attributes 
+  id                Int               @id @default(autoincrement())
+  createdAt         DateTime          @default(now())
+  email             String            @unique
+  name              String?
+  role              Role              @default(USER)
+  post              Post[]
+}
+
+model Post { 
+  id                Int               @id @default(autoincrement())
+  createAt          DateTime          @default(now())
+  updateAt          DateTime
+  published         Boolean           @default(false)
+  title             String            @db.VarChar(255)
+  authorId          Int?              
+  author            User?             @relation(fields: [authorId], references: [id])
+}
+
+enum Role { 
+  USER
+  ADMIN
 }
