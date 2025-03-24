@@ -33,20 +33,8 @@ app.put('/admin/change-user-password/:userId', async (c) => {
     return c.json({ message : 'User password changed'})
 })
 
-app.get('/admin/users/empty-name', async (c) => { 
-    const users = await prisma.user.findMany({ 
-        select : { // select เลือกเอามาเฉพาะ id email name 
-            id : true, 
-            email : true, 
-            name : true
-        },
-        where : { // ค้นหาที่ name เป็น null หรือว่า ''
-            OR : [
-                {name : null}, 
-                {name : ''}
-            ]
-        }
-    })
+app.get('/admin/users/empty-name', async (c) => { // กรณีใช้บ่อย ให้ไปสร้าง function in prisma.ts แล้วดึงมาใช้แทน 
+    const users = await prisma.user.findEnptyName()
     return c.json({ users })
 })
 
