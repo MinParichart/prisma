@@ -15,25 +15,35 @@ datasource db {
 
 model User {
   //field name     //field type       //Attributes 
-  id                Int               @id @default(autoincrement())
-  createdAt         DateTime          @default(now())
-  email             String            @unique
-  name              String?
-  role              Role              @default(USER)
-  post              Post[]
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique // email ห้ามซ้ำกันในระบบ 
+  name      String?
+  role      Role     @default(USER)
+  post      Post[]
 }
 
-model Post { 
-  id                Int               @id @default(autoincrement())
-  createAt          DateTime          @default(now())
-  updateAt          DateTime
-  published         Boolean           @default(false)
-  title             String            @db.VarChar(255)
-  authorId          Int?              
-  author            User?             @relation(fields: [authorId], references: [id])
+model Post {
+  id        Int      @id @default(autoincrement())
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  published Boolean  @default(false)
+  title     String   @db.VarChar(255)
+  authorId  Int?
+  author    User?    @relation(fields: [authorId], references: [id])
+  category  Category[]
+
+  // @@index([title]) // ช่วยในการค้นหาข้อมูลที่ถูกค้นหาบ่อย 
 }
 
-enum Role { 
+model Category {
+  id      Int        @id @default(autoincrement())
+  name    String
+  post    Post[]     
+}
+
+enum Role {
   USER
   ADMIN
 }
+
