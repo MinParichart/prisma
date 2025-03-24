@@ -181,6 +181,13 @@ datasource db {
 เมื่อเราพัฒนาแบบให้มัน deploy มันก็จะเป็น .env.production ในที่นี้เราใช้ render ในการ deploy 
 เอา external url จาก ที่ได้ใน render มาวาง 
 รันคำสั่ง เพื่อ deploy งานขึ้น database ในที่นี้คือ render >> pnpm run deploy:db 
+มันก็จะขึ้นไปที่ database render >> ที่นี้ เขาไม่มี link หน้าเว็บให้ดู เราก็ไปเชื่อมต่อ connection กับ DBeaver ก็ได้ 
+ก็เพิ่ connection และใส่ค่า username password database host แล้วลอง test connection 
+เราก็จะสามารถดู database ที่ Render ในเครื่องของเรา 
+หากมีการเปลี่ยนแปลง prisma.scheme >> prisma migrate dev เพื่อให้ทุกอย่าง update แต่ยังไม่ใช่ deploy ขึ้นหน้าเว็บนะ ต้องใข้ >> pnpm run deploy:db 
+เรียกข้อมูลเดิม ทั้งหมดมายัง schema.prisma >> prisma db pull 
+Chinook Database download >> create database chinook ที่ localhost >> open file >> select downloaded file >> N/A select chinook >> publich double click
+
 
 
 
