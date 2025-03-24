@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev" : "tsx src/index.ts",
+    "dev": "tsx --watch src/index.ts",
     "deploy:db": "dotenv -e .env.production -- prisma migrate deploy"
   },
   "keywords": [],
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.14.0",
+    "@node-rs/argon2": "^2.0.2",
     "@prisma/client": "6.5.0",
     "hono": "^4.7.5"
   }

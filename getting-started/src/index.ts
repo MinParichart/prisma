@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from './prisma' // import จากไฟล์  prisma.ts 
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient() // เอาออก เพราะว่าไปดึงเอาจากไฟล์ prisma.ts มาแทน 
 
 const app = new Hono(); 
 
@@ -16,13 +16,6 @@ app.post('/sign-up', async (c) => {
         data : { 
             email : json.email, 
             password : json.password,
-        }
-    })
-    prisma.user.findMany({
-        where : { 
-            email : {
-               contains : 'min',
-            },
         }
     })
     return c.json({ message : 'User created'})
