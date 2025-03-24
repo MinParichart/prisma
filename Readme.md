@@ -38,7 +38,7 @@ Examples
 ติดตั้งแบบ global >>  npm i -g prisma 
 ถ้าติดตั้งแบบ global แล้ว เขียนคำสั่งแบบนี้ได้เลย >> prisma -h 
 Set up a new Prisma project จะได้ folder prisma และ .env file ขึ้นมา >> prisma init 
-
+sync database กับ ตาราง เป็น การ connect database มักผิดตรง Database_URL ใน schema.prima ตาราง User จะไปโผล่ที่ DBeaver  >> prisma db push 
 
 
 
