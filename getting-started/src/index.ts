@@ -21,4 +21,16 @@ app.post('/sign-up', async (c) => {
     return c.json({ message : 'User created'})
 })
 
+app.put('/admin/change-user-password/:userId', async (c) => { 
+    const userId = parseInt(c.req.param('userId'))
+    const json = await c.req.json() as { password : string }
+    await prisma.user.update({ 
+        where : { id : userId}, 
+        data : { 
+            password : json.password, 
+        }
+    })
+    return c.json({ message : 'User password changed'})
+})
+
 serve(app)
